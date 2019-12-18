@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Ulbo.ConstraintKit</id>
+    <title>ConstraintKit</title>
+    <version>1.0.0</version>
+    <license type="expression">MIT</license>
+    <authors>Ulrich</authors>
+    <owners>Ulrich</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A small kit for common constraint operations in Xamarin.iOS</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>Constraint Constraints ConstraintKit</tags>
+    <dependencies>
+      <dependency id="SampleDependency" version="1.0" />
+    </dependencies>
+  </metadata>
+  <files>
+      <file src="src\Ulbo.ConstraintKit\bin\Release\Ulbo.ConstraintKit.dll" target="lib\Xamarin.iOS\Ulbo.ConstraintKit.dll"/>
+  </files>
+</package>
