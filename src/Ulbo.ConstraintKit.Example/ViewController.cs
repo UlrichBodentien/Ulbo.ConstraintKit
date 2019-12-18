@@ -1,6 +1,4 @@
-﻿using Foundation;
-using System;
-using UIKit;
+﻿using UIKit;
 
 namespace Ulbo.ConstraintKit.Example
 {
@@ -17,9 +15,6 @@ namespace Ulbo.ConstraintKit.Example
             View.AddSubview(blueView);
 
             blueView.MakeConstraints((builder) => builder.AllEdges(View));
-
-            blueView.MakeConstraints(
-                blueView.LeftAnchor.ConstraintEqualTo(View.LeftAnchor));
         }
     }
 }

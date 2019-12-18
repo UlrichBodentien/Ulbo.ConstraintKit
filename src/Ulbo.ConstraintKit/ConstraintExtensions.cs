@@ -60,5 +60,43 @@ namespace Ulbo.ConstraintKit
             constraint.Active = false;
             return constraint;
         }
+
+        public static IEnumerable<NSLayoutConstraint> ActivateConstraints(this UIView view)
+        {
+            var constraints = ConstraintsAffecting(view, view.Superview);
+            constraints = constraints.Concat(ConstraintsOnlyAffecting(view));
+            constraints.Activate();
+            return constraints;
+        }
+
+        public static IEnumerable<NSLayoutConstraint> DeactivateConstraints(this UIView view)
+        {
+            var constraints = ConstraintsAffecting(view, view.Superview);
+            constraints = constraints.Concat(ConstraintsOnlyAffecting(view));
+            constraints.Deactivate();
+            return constraints;
+        }
+
+        public static IEnumerable<NSLayoutConstraint> GetConstraintsAffectingThis(this UIView view)
+        {
+            var constraints = ConstraintsAffecting(view, view.Superview);
+            return constraints.Concat(ConstraintsOnlyAffecting(view));
+        }
+
+        private static IEnumerable<NSLayoutConstraint> ConstraintsAffecting(UIView view, UIView parent)
+        {
+            if (parent == null)
+            {
+                return Enumerable.Empty<NSLayoutConstraint>();
+            }
+
+            var constraints = ConstraintsAffecting(view, parent.Superview);
+            return constraints.Concat(parent.Constraints.Where(c => c.FirstItem == view || c.SecondItem == view));
+        }
+
+        private static IEnumerable<NSLayoutConstraint> ConstraintsOnlyAffecting(UIView view)
+        {
+            return view.Constraints.Where(c => c.FirstItem == view && c.SecondItem == null);
+        }
     }
 }
